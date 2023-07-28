@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "5a95c6ac-e81a-4542-ae1e-70f5f1ffee21",
+		"name": "SimpleChat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2431004"
+	},
+	"item": [
+		{
+			"name": "chat",
+			"item": [
+				{
+					"name": "chat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://rcwwocnqq8.execute-api.eu-south-1.amazonaws.com/prod/chat",
+							"protocol": "https",
+							"host": [
+								"rcwwocnqq8",
+								"execute-api",
+								"eu-south-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"prod",
+								"chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://rcwwocnqq8.execute-api.eu-south-1.amazonaws.com/prod/chat?senderName=Alice&senderId=16d2fd32-f448-445e-98c4-c6780be000fc&message=Hello from Alice",
+							"protocol": "https",
+							"host": [
+								"rcwwocnqq8",
+								"execute-api",
+								"eu-south-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"prod",
+								"chat"
+							],
+							"query": [
+								{
+									"key": "senderName",
+									"value": "Alice"
+								},
+								{
+									"key": "senderId",
+									"value": "16d2fd32-f448-445e-98c4-c6780be000fc"
+								},
+								{
+									"key": "message",
+									"value": "Hello from Alice"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://rcwwocnqq8.execute-api.eu-south-1.amazonaws.com/prod/user?userName=Alice",
+							"protocol": "https",
+							"host": [
+								"rcwwocnqq8",
+								"execute-api",
+								"eu-south-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"prod",
+								"user"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "Alice"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{API_KEY_DEFAULT}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_KEY_DEFAULT",
+			"value": "iOlWjQ29sH6lZ7WjYWvY1dPqbcAd6rE7jEYGXjVi",
+			"type": "string"
+		}
+	]
+}
