@@ -1,0 +1,87 @@
+openapi: "3.0.1"
+info:
+  title: "sc-fed_simplechat"
+  version: "2023-07-27T11:47:28Z"
+servers:
+- url: "https://wdxpqav9be.execute-api.eu-south-1.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: ""
+paths:
+  /chat:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /chat"
+      security:
+      - auth_hardcoded: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:eu-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-south-1:963141562654:function:scfed-simplechat_getchats/invocations"
+        connectionType: "INTERNET"
+        timeoutInMillis: 30000
+    post:
+      responses:
+        default:
+          description: "Default response for POST /chat"
+      security:
+      - auth_hardcoded: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:eu-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-south-1:963141562654:function:scfed-simplechat_addchat/invocations"
+        connectionType: "INTERNET"
+    options:
+      responses:
+        default:
+          description: "Default response for OPTIONS /chat"
+  /user:
+    post:
+      responses:
+        default:
+          description: "Default response for POST /user"
+      security:
+      - auth_hardcoded: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:eu-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-south-1:963141562654:function:scfed-simplechat_registeruser/invocations"
+        connectionType: "INTERNET"
+    options:
+      responses:
+        default:
+          description: "Default response for OPTIONS /user"
+components:
+  securitySchemes:
+    auth_hardcoded:
+      type: "apiKey"
+      name: "x-api-key"
+      in: "header"
+      x-amazon-apigateway-authorizer:
+        identitySource: "$request.header.x-api-key"
+        authorizerUri: "arn:aws:apigateway:eu-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-south-1:963141562654:function:scfed-simplechat_authorizer/invocations"
+        authorizerPayloadFormatVersion: "2.0"
+        authorizerResultTtlInSeconds: 0
+        type: "request"
+        enableSimpleResponses: true
+x-amazon-apigateway-cors:
+  allowMethods:
+  - "GET"
+  - "OPTIONS"
+  - "POST"
+  allowHeaders:
+  - "*"
+  exposeHeaders:
+  - "*"
+  maxAge: 0
+  allowCredentials: true
+  allowOrigins:
+  - "http://127.0.0.1:5500"
+  - "http://localhost:3000"
+  - "http://localhost:5173"
+  - "https://localhost:5173"
+x-amazon-apigateway-importexport-version: "1.0"

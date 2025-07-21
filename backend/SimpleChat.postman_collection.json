@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5a95c6ac-e81a-4542-ae1e-70f5f1ffee21",
+		"_postman_id": "5755f902-78a9-4022-8bcb-3bee6d9f2621",
 		"name": "SimpleChat",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "2431004"
+		"_exporter_id": "43752385"
 	},
 	"item": [
 		{
@@ -15,17 +15,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://rcwwocnqq8.execute-api.eu-south-1.amazonaws.com/prod/chat",
-							"protocol": "https",
+							"raw": "{{BASE_URI}}/chat",
 							"host": [
-								"rcwwocnqq8",
-								"execute-api",
-								"eu-south-1",
-								"amazonaws",
-								"com"
+								"{{BASE_URI}}"
 							],
 							"path": [
-								"prod",
 								"chat"
 							]
 						}
@@ -38,31 +32,25 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://rcwwocnqq8.execute-api.eu-south-1.amazonaws.com/prod/chat?senderName=Alice&senderId=16d2fd32-f448-445e-98c4-c6780be000fc&message=Hello from Alice",
-							"protocol": "https",
+							"raw": "{{BASE_URI}}/chat?senderName=Doris&senderId=41726e0b-8914-4b55-9055-16b704b52818&message=Hello from Doris",
 							"host": [
-								"rcwwocnqq8",
-								"execute-api",
-								"eu-south-1",
-								"amazonaws",
-								"com"
+								"{{BASE_URI}}"
 							],
 							"path": [
-								"prod",
 								"chat"
 							],
 							"query": [
 								{
 									"key": "senderName",
-									"value": "Alice"
+									"value": "Doris"
 								},
 								{
 									"key": "senderId",
-									"value": "16d2fd32-f448-445e-98c4-c6780be000fc"
+									"value": "41726e0b-8914-4b55-9055-16b704b52818"
 								},
 								{
 									"key": "message",
-									"value": "Hello from Alice"
+									"value": "Hello from Doris"
 								}
 							]
 						}
@@ -80,23 +68,17 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://rcwwocnqq8.execute-api.eu-south-1.amazonaws.com/prod/user?userName=Alice",
-							"protocol": "https",
+							"raw": "{{BASE_URI}}/user?userName=PostAuth",
 							"host": [
-								"rcwwocnqq8",
-								"execute-api",
-								"eu-south-1",
-								"amazonaws",
-								"com"
+								"{{BASE_URI}}"
 							],
 							"path": [
-								"prod",
 								"user"
 							],
 							"query": [
 								{
 									"key": "userName",
-									"value": "Alice"
+									"value": "PostAuth"
 								}
 							]
 						}

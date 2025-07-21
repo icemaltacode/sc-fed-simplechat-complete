@@ -27,6 +27,7 @@ export default function ChatView({ userId }) {
   });
 
   if (chatQuery.status === "loading") return <h1>Loading...</h1>;
+  if (!chatQuery.data) return;
 
   return (
     <ChatContainer>

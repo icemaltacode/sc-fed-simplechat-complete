@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import fancyTime from "../util/FancyTime";
-import getUserColor from "../util/UserColor";
-import UserIcon from "../util/UserIcon";
+import fancyTime from "../util/FancyTime.jsx";
+import getUserColor from "../util/UserColor.jsx";
+import UserIcon from "../util/UserIcon.jsx";
 
 const ChatBoxContainer = styled.div`
   display: flex;
@@ -16,58 +16,65 @@ const ChatBoxContainer = styled.div`
   margin: 0 10px 10px 10px;
 `;
 
-const ChatBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 10px;
-  padding: 5px;
-  border-radius: 5px;
-  min-width: 100px;
-
-  --r: 25px; /* the radius */
-  --t: 20px; /* the size of the tail */
-
+const ChatBox = styled.div(({ $bgcolor, $usertype }) => `
+  position: relative;
+  padding: 15px;
   margin: 0;
   max-width: 300px;
-  padding: 15px;
-  -webkit-mask: radial-gradient(var(--t) at var(--_d) 0, #0000 98%, #000 102%)
-      var(--_d) 100% / calc(100% - var(--r)) var(--t) no-repeat,
-    conic-gradient(at var(--r) var(--r), #000 75%, #0000 0) calc(var(--r) / -2)
-      calc(var(--r) / -2) padding-box,
-    radial-gradient(50% 50%, #000 98%, #0000 101%) 0 0 / var(--r) var(--r) space
-      padding-box;
+  border-radius: 20px;
+  background: ${$bgcolor?.color ?? "lightgrey"};
+  color: ${$bgcolor?.isLight ? "black" : "white"};
 
-  ${({ $usertype }) =>
-    $usertype && $usertype === "user"
-      ? `  --_d: 100%;
-  border-right: 16px solid #0000;
-  margin-left: var(--t);
-  place-self: end;`
-      : $usertype === "system"
-      ? ""
-      : `--_d: 0%;
-    border-left: 16px solid #0000;
-    margin-right: var(--t);
-    place-self: start;`};
+  ${$usertype === "user" ? `
+    align-self: flex-end;
+    margin-left: 40px;
 
-  ${({ $bgcolor }) => $bgcolor && `background: ${$bgcolor.color}`};
+    &::after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      bottom: 14px;
+      width: 0;
+      height: 0;
+      z-index: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid ${$bgcolor?.color ?? "lightgrey"};
+    }
+  ` : $usertype === "system" ? `
+    align-self: center;
+    margin: 0 auto;
+  ` : `
+    align-self: flex-start;
+    margin-right: 40px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: -6px;
+      bottom: 14px;
+      width: 0;
+      height: 0;
+      z-index: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid ${$bgcolor?.color ?? "lightgrey"};
+    }
+  `}
 
   .senderName {
     font-size: 8pt;
     font-weight: bold;
-    ${({ $bgcolor }) =>
-      $bgcolor &&
-      `color: ${
-        $bgcolor.isLight ? "rgba(143, 48, 4, 1)" : "rgba(255, 208, 64, 1)"
-      }`};
+    color: ${$bgcolor?.isLight
+      ? "rgba(143, 48, 4, 1)"
+      : "rgba(255, 208, 64, 1)"};
   }
 
   .messageTime {
     font-size: 7pt;
     color: rgba(0, 0, 0, 0.5);
   }
-`;
+`);
 
 const ChatBoxHeader = styled.div`
   display: flex;
